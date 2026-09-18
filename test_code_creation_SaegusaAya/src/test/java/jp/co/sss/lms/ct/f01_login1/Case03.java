@@ -70,6 +70,9 @@ public class Case03 {
 		// ログインボタンを押下する
 		webDriver.findElement(By.className("btn")).click();
 
+		// コース詳細画面が表示されるまで待機(基準として「すべて開く」ボタンの表示を設定)
+		visibilityTimeout(By.id("open-all-panel"), 5);
+
 		// タイトルを取得
 		final String title = webDriver.getTitle();
 
