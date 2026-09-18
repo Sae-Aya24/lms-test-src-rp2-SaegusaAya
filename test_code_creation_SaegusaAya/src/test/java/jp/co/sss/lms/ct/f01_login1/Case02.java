@@ -69,7 +69,7 @@ public class Case02 {
 		passwordElement.sendKeys("unknownUser01");
 
 		// ログインボタンを押下する
-		webDriver.findElement(By.className("btn-primary")).click();
+		webDriver.findElement(By.className("btn")).click();
 
 		// 他の画面に遷移していないことを確認するため、タイトルを取得
 		String title = webDriver.getTitle();
