@@ -159,6 +159,9 @@ public class Case05 {
 		// 「検索」ボタンを押下する(「クリア」ボタンと同じクラスを持つためvalueで指定)
 		webDriver.findElement(By.cssSelector("input[value='検索']")).click();
 
+		// 検索結果が表示されるまで待機
+		visibilityTimeout(By.cssSelector("[id^='question-h']"), 5);
+
 		// 検索結果として表示されている質問の一覧を取得
 		// idが「question-h」から始まる要素(検索結果一覧に表示されている各質問のdl要素)をすべて取得
 		final List<WebElement> resultList = webDriver.findElements(By.cssSelector("[id^='question-h']"));
