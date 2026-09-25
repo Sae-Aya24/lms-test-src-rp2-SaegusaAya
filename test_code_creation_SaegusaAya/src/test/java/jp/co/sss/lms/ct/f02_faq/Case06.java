@@ -189,7 +189,7 @@ public class Case06 {
 		});
 
 		// 期待値と一致するか確認
-		assertTrue(answerElement.getText().contains("協議という形を取らせて頂きます"), "質問をクリックすると回答が表示されること");
+		assertTrue(answerElement.getText().contains("受講者の退職や解雇等"), "質問をクリックすると回答が表示されること");
 	}
 
 }
