@@ -154,7 +154,7 @@ public class Case07 {
 		webDriver.findElement(By.cssSelector("[id^='content_']")).sendKeys("本日はテストコード作成演習を行いました。");
 
 		// 「提出する」ボタンを押下する
-		webDriver.findElement(By.className("btn")).click();
+		webDriver.findElement(By.className("btn-primary")).click();
 
 		// セクション詳細画面に戻るまで待機(基準としてsection要素の表示を設定)
 		visibilityTimeout(By.id("section"), 5);
