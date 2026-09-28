@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 /**
@@ -103,6 +104,9 @@ public class Case08 {
 			}
 		}
 
+		// 「詳細」ボタンまでスクロールする(画面外にあるとクリックが失敗するため)
+		((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(true);", detailButton);
+
 		// 「詳細」ボタンを押下する
 		detailButton.click();
 
@@ -124,8 +128,8 @@ public class Case08 {
 	@Order(4)
 	@DisplayName("テスト04 「確認する」ボタンを押下しレポート登録画面に遷移")
 	void test04() {
-		// 「提出済み(レポート名)を確認する」ボタンを取得
-		final WebElement confirmButton = webDriver.findElement(By.cssSelector("input[value*='を確認する']"));
+		// 「提出済み週報【デモ】を確認する」ボタンを取得
+		final WebElement confirmButton = webDriver.findElement(By.cssSelector("input[value*='週報'][value*='を確認する']"));
 
 		// 「提出済み(レポート名)を確認する」ボタンを押下する
 		confirmButton.click();
@@ -148,11 +152,11 @@ public class Case08 {
 	@Order(5)
 	@DisplayName("テスト05 報告内容を修正して「提出する」ボタンを押下しセクション詳細画面に遷移")
 	void test05() {
-		// 報告内容欄の既存の内容を消去する
-		final WebElement contentElement = webDriver.findElement(By.cssSelector("[id^='content_']"));
+		// 報告内容(所感)欄の既存の内容を消去する
+		final WebElement contentElement = webDriver.findElement(By.id("content_1"));
 		contentElement.clear();
 
-		// 報告内容欄に修正後の内容を入力する
+		// 報告内容(所感)欄に修正後の内容を入力する
 		// 入力値：本日はテストコード作成演習の続きを行いました。
 		contentElement.sendKeys("本日はテストコード作成演習の続きを行いました。");
 
@@ -206,13 +210,17 @@ public class Case08 {
 		final List<WebElement> rows = reportListTable.findElements(By.cssSelector("tr"));
 
 		// 対象の研修日(2022年10月2日)の行から「詳細」ボタンを取得する
+		// 日報との区別を図るため、レポート名の列に「週報」を含む行に絞り込む
 		WebElement detailButton = null;
 		for (WebElement row : rows) {
-			if (row.getText().contains("2022年10月2日")) {
+			if (row.getText().contains("2022年10月2日") && row.getText().contains("週報")) {
 				detailButton = row.findElement(By.cssSelector("input[value='詳細']"));
 				break;
 			}
 		}
+
+		// 「詳細」ボタンまでスクロールする(画面外にあるとクリックが失敗するため)
+		((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(true);", detailButton);
 
 		// 「詳細」ボタンを押下する
 		detailButton.click();
