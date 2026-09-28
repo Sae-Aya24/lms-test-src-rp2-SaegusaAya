@@ -157,8 +157,11 @@ public class Case08 {
 		// 入力値：本日はテストコード作成演習の続きを行いました。
 		contentElement.sendKeys("本日はテストコード作成演習の続きを行いました。");
 
-		// 「提出する」ボタンを押下する
-		webDriver.findElement(By.className("btn-primary")).click();
+		// 「提出する」ボタンを取得する
+		final WebElement submitButton = webDriver.findElement(By.className("btn-primary"));
+
+		// 「提出する」ボタンをクリックする(画面外や他要素と重なりクリックが失敗する可能性があるため、JavaScriptで直接クリックする)
+		((JavascriptExecutor) webDriver).executeScript("arguments[0].click();", submitButton);
 
 		// セクション詳細画面に戻るまで待機(基準としてsection要素の表示を設定)
 		visibilityTimeout(By.id("section"), 5);
