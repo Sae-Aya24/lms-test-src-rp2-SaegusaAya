@@ -104,11 +104,8 @@ public class Case08 {
 			}
 		}
 
-		// 「詳細」ボタンまでスクロールする(画面外にあるとクリックが失敗するため)
-		((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(true);", detailButton);
-
-		// 「詳細」ボタンを押下する
-		detailButton.click();
+		// 「詳細」ボタンをクリックする(ヘッダーが固定表示で重なる可能性があるため、JavaScriptで直接クリックする)
+		((JavascriptExecutor) webDriver).executeScript("arguments[0].click();", detailButton);
 
 		// セクション詳細画面が表示されるまで待機(基準としてsection要素の表示を設定)
 		visibilityTimeout(By.id("section"), 5);
@@ -219,11 +216,8 @@ public class Case08 {
 			}
 		}
 
-		// 「詳細」ボタンまでスクロールする(画面外にあるとクリックが失敗するため)
-		((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(true);", detailButton);
-
-		// 「詳細」ボタンを押下する
-		detailButton.click();
+		// 「詳細」ボタンをクリックする(ヘッダーが固定表示で重なる可能性があるため、JavaScriptで直接クリックする)
+		((JavascriptExecutor) webDriver).executeScript("arguments[0].click();", detailButton);
 
 		// レポート詳細画面が表示されるまで待機(基準として表の表示を設定)
 		visibilityTimeout(By.cssSelector(".table-hover"), 5);
